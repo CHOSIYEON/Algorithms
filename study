@@ -1,0 +1,20 @@
+1. input() 보다 sys.stdin.readline() 이 더 빠르다.
+
+2. n개를 입력받아 리스트 형태로 -> [sys.stdin.readline().strip() for i in range(n)]
+   strip() 은 문자열 맨 앞과 맨 뒤의 공백 문자를 제거한다.
+
+3. 데이터의 개수를 셀 때 -> from collections import Counter
+   Counter('hello world') # Counter({'l': 3, 'o': 2, 'h': 1, 'e': 1, ' ': 1, 'w': 1, 'r': 1, 'd': 1})
+
+   most_common() -> 개수가 많은 순으로 정렬
+   Counter('hello world').most_common() # [('l', 3), ('o', 2), ('h', 1), ('e', 1), (' ', 1), ('w', 1), ('r', 1), ('d', 1)]
+
+   가장 개수가 많은 순서로 1개 출력
+   Counter('hello world').most_common(1) # [('l', 3)]
+
+4. sort vs sorted
+   sort 는 그 자리에서 정렬하여 목록 변경 : a.sort()
+   sorted 는 새로운 정렬된 목록 반환, 원래 목록 영향 안받음 : sorted(a)
+   -> sort 는 복사본을 만들지 않기 때문에 sorted 보다 빠름
+   -> list 는 sort 많이 사용
+   -> 다른 이터레이터는 어차피 sorted 만 사용가
