@@ -1,38 +1,29 @@
 import sys
 input = sys.stdin.readline
 
+stack = []
 n = int(input())
-arr = []
 
 for i in range(n):
-    line = str(input().strip())
-    cmd = ''
-    num = 0
+    command = input().split()
 
-    if line.count(' ') != 0:
-        cmd, num = line.split()
-    else:
-        cmd = line
-
-    if cmd == 'push':
-        arr.append(int(num))
-    elif cmd == 'pop':
-        if len(arr) != 0:
-            print(arr[-1])
-            arr = arr[:-1]
-        else:
+    if command[0] == 'push':
+        stack.append(command[1])
+    elif command[0] == 'pop':
+        if len(stack) == 0:
             print(-1)
-    elif cmd == 'size':
-        print(len(arr))
-    elif cmd == 'empty':
-        if len(arr) == 0:
+        else:
+            print(stack.popleft())
+    elif command[0] == 'size':
+        print(len(stack))
+    elif command[0] == 'empty':
+        if len(stack) == 0:
             print(1)
         else:
             print(0)
-    elif cmd == 'top':
-        if len(arr) != 0:
-            print(arr[-1])
-        else:
+    elif command[0] == 'top':
+        if len(stack) == 0:
             print(-1)
-
+        else:
+            print(stack[-1])
 

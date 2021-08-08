@@ -17,4 +17,12 @@
    sorted 는 새로운 정렬된 목록 반환, 원래 목록 영향 안받음 : sorted(a)
    -> sort 는 복사본을 만들지 않기 때문에 sorted 보다 빠름
    -> list 는 sort 많이 사용
-   -> 다른 이터레이터는 어차피 sorted 만 사용가
+   -> 다른 이터레이터는 어차피 sorted 만 사용가능
+
+5. list 로 stack, queue
+   stack : stack.append(x), stack.pop() -> 오른쪽에서 넣고, 오른쪽에서 출
+   queue : from collections import deque 사용
+           queue.appendleft(x) -> 왼쪽에서 입력
+           queue.append(x) -> 오른쪽에서 입력
+           queue.pop() -> 오른쪽에서 출력
+           queue.popleft() -> 왼쪽에서 출력
