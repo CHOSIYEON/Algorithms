@@ -20,9 +20,12 @@
    -> 다른 이터레이터는 어차피 sorted 만 사용가능
 
 5. list 로 stack, queue
-   stack : stack.append(x), stack.pop() -> 오른쪽에서 넣고, 오른쪽에서 출
-   queue : from collections import deque 사용
+   stack : stack.append(x), stack.pop() -> 오른쪽에서 넣고, 오른쪽에서 출력
+   queue : from collections import deque 사용 --> 왼쪽에서 넣고 오른쪽에서 출력
            queue.appendleft(x) -> 왼쪽에서 입력
            queue.append(x) -> 오른쪽에서 입력
            queue.pop() -> 오른쪽에서 출력
            queue.popleft() -> 왼쪽에서 출력
+
+6. ord('a') -> 97
+   chr(97) -> a

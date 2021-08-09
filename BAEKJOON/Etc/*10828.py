@@ -13,7 +13,7 @@ for i in range(n):
         if len(stack) == 0:
             print(-1)
         else:
-            print(stack.popleft())
+            print(stack.pop())
     elif command[0] == 'size':
         print(len(stack))
     elif command[0] == 'empty':
