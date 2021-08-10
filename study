@@ -29,3 +29,22 @@
 
 6. ord('a') -> 97
    chr(97) -> a
+
+7. strip([chars]) : 문자를 String의 왼쪽과 오른쪽에서 제거
+   lstrip([chars]) : 문자를 String의 왼쪽에서 제거
+   rstrip([chars]) : 문자를 String의 오른쪽에서 제거
+
+   text = ' abc '
+   print('[' + text.rstrip() + ']') # [ abc]
+   print('[' + text.lstrip() + ']') # [abc ]
+   print('[' + text.strip() + ']') # [abc]
+
+8. isupper() -> 대문자 검사
+   islower() -> 소문자 검사
+   isdigit() -> 숫자 검사
+   isspace() -> 공백 검사
+
+9. list 길이가 0인지 아닌지 판별할때 len(list) 안하고
+   if list 하면 됨
+
+10. list 를 문자열 처럼 출력할때 -> ''.join(list)
