@@ -73,3 +73,15 @@
 13. n이 소수인지 아닌지 판별할때 2부터 n의 제곱근까지만 나눠보면 됨
 
 14. sys.setrecursionlimit(10000)
+
+15. set 자료형 -> {} 로 나타냄
+    i = {1,2,3,4,5}
+    j = {3,5,7,9}
+    print(i|j) # {1, 2, 3, 4, 5, 7, 9}
+    print(i.union(j)) # {1, 2, 3, 4, 5, 7, 9}
+    print(i&j) # {3, 5}
+    print(i.intersection(j)) # {3, 5}
+    print(i-j) # {1, 2, 4}
+    print(i.difference(j)) # {1, 2, 4}
+    print(i^j) # {1, 2, 4, 7, 9}
+    print(i.symmetric_difference(j)) # {1, 2, 4, 7, 9}
