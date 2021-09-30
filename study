@@ -85,3 +85,5 @@
     print(i.difference(j)) # {1, 2, 4}
     print(i^j) # {1, 2, 4, 7, 9}
     print(i.symmetric_difference(j)) # {1, 2, 4, 7, 9}
+
+16. from itertools import permutations
