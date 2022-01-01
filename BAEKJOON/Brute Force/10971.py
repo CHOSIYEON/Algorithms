@@ -25,5 +25,5 @@ for i in way:
     result = find_way(i)
     if result != False:
         ans.append(result)
-
+print(ans)
 print(min(ans))
