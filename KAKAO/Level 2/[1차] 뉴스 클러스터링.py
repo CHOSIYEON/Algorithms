@@ -20,7 +20,6 @@ def solution(str1, str2):
             set2.append(temp.lower())
 
     set1, set2 = Counter(set1), Counter(set2)
-    union_set = set1 + set2
 
     inter = list((set1 & set2).elements())
     union = list((set1 | set2).elements())
