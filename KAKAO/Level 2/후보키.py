@@ -8,7 +8,7 @@ def solution(relations):
         candidates.extend(combinations([x for x in range(col)], i))
 
     unique = []
-    for candidate in candid플ates:
+    for candidate in candidates:
         temp = [tuple([relation[i] for i in candidate]) for relation in relations]
 
         if len(set(temp)) == row:
