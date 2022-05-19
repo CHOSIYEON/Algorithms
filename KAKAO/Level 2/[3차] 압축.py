@@ -1,23 +1,17 @@
 def solution(msg):
     answer = []
-    eng = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
-           'W', 'X', 'Y', 'Z']
+    dictionary = {chr(x): x - 64 for x in range(65, 91)}
+    idx_f, idx_e = 0, 0
 
-    while len(msg) > 0:
-        w = msg[0]
-        cnt = 0
-        if len(msg) == 1:
-            answer.append(eng.index(w) + 1)
+    while True:
+        idx_e += 1
+        if idx_e == len(msg):
+            answer.append(dictionary[msg[idx_f:idx_e]])
             break
-        while len(w) < len(msg):
-            s = w
-            cnt += 1
-            w += msg[cnt]
-            if w not in eng:
-                w = s
-                break
-        answer.append(eng.index(w) + 1)
-        msg = msg[len(w):]
-        if msg:
-            eng.append(w + msg[0])
+
+        if msg[idx_f:idx_e + 1] not in dictionary.keys():
+            dictionary[msg[idx_f:idx_e + 1]] = len(dictionary) + 1
+            answer.append(dictionary[msg[idx_f:idx_e]])
+            idx_f = idx_e
+
     return answer
