@@ -27,6 +27,3 @@ def solution(n, info):
                 answer = info2
 
     return answer
-
-
-solution(5, [2,1,1,1,0,0,0,0,0,0,0])
