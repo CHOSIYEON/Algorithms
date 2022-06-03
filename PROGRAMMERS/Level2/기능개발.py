@@ -1,17 +1,29 @@
+import math
+
+
 def solution(progresses, speeds):
     answer = []
+    idx = 0
 
-    while len(progresses) > 1:
-        for i in range(len(progresses)):
-            progresses[i] += speeds[i]
-        for i in range(len(progresses)):
-            if progresses[i] < 100:
-                break
+    for i in range(len(progresses)):
+        progresses[i] = math.ceil((100 - progresses[i]) / speeds[i])
 
-        if i != 0:
-            progresses = progresses[i:]
-            answer.append(i)
+    now = progresses[idx]
+    cnt = 0
+
+    while True:
+        if idx >= len(progresses):
+            break
+
+        if progresses[idx] <= now:
+            cnt += 1
+        else:
+            now = progresses[idx]
+            answer.append(cnt)
+            cnt = 1
+
+        idx += 1
+
+    answer.append(cnt)
 
     return answer
-
-solution([93, 30, 55], [1, 30, 5])
