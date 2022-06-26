@@ -35,7 +35,6 @@ def solution(n, wires):
                 cnt = bfs(i, tree, visited, wire, 0)
                 temp.append(cnt)
 
-        if len(temp) == 2:
-            answer = min(answer, abs(temp[0] - temp[1]))
+        answer = min(answer, abs(temp[0] - temp[1]))
 
     return answer
