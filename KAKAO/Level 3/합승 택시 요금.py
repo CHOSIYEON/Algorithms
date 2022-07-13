@@ -1,3 +1,4 @@
+# 다익스트라
 import heapq
 
 def dijkstra(start, distance, graph):
@@ -35,5 +36,30 @@ def solution(n, s, a, b, fares):
 
         if answer > distance[i] + distance2[a] + distance2[b]:
             answer = distance[i] + distance2[a] + distance2[b]
+
+    return answer
+
+####################################################
+# 플로이드 워셜
+def solution(n, s, a, b, fares):
+    graph = [[1e9] * (n + 1) for _ in range(n + 1)]
+
+    for i in range(n + 1):
+        graph[i][i] = 0
+
+    for fare in fares:
+        node1, node2, cost = fare
+        graph[node1][node2] = cost
+        graph[node2][node1] = cost
+
+    for k in range(1, n + 1):
+        for i in range(1, n + 1):
+            for j in range(1, n + 1):
+                graph[i][j] = min(graph[i][j], graph[i][k] + graph[k][j])
+
+    answer = graph[s][a] + graph[s][b]
+
+    for i in range(1, n + 1):
+        answer = min(answer, graph[s][i] + graph[i][a] + graph[i][b])
 
     return answer
