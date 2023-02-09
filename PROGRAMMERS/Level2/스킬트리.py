@@ -1,47 +1,37 @@
-from collections import defaultdict
-
-def check(skill_tree):
-    now = 1
+def isPossible(skill, skill_tree):
+    now = 0
     for s in skill_tree:
-        if skill_info[s]:
-            if now != skill_info[s]:
+        if s in skill:
+            if now >= skill.index(s):
+                now = skill.index(s) + 1
+            else:
                 return False
-            now += 1
+
     return True
 
 
 def solution(skill, skill_trees):
     answer = 0
-    global skill_info
-    skill_info = defaultdict(int)
-
-    for idx, s in enumerate(skill):
-        skill_info[s] = idx + 1
 
     for skill_tree in skill_trees:
-        if check(skill_tree):
+        if isPossible(skill, skill_tree):
             answer += 1
 
     return answer
 
-
-##
-def check(skill_tree, skill):
-    now = 0
-    for s in skill_tree:
-        if s in skill:
-            if skill.index(s) == now:
-                now += 1
-            else:
-                return False
-    return True
-
+##########################
 
 def solution(skill, skill_trees):
     answer = 0
 
     for skill_tree in skill_trees:
-        if check(skill_tree, skill):
+        check = ''
+
+        for s in skill_tree:
+            if s in skill:
+                check += s
+
+        if check == skill[0:len(check)]:
             answer += 1
 
     return answer

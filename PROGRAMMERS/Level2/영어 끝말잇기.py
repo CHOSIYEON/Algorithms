@@ -1,12 +1,12 @@
-import math
-
 def solution(n, words):
-    usedWords = []
+    answer = []
+    check, prev = [words[0]], words[0]
 
-    for idx, word in enumerate(words):
-        if word in usedWords or (idx >= 1 and words[idx - 1][-1] != word[0]):
-            return [idx % n + 1, math.ceil((idx + 1) / n)]
+    for i in range(1, len(words)):
+        if words[i] in check or prev[-1] != words[i][0]:
+            return [i % n + 1, i // n + 1]
 
-        usedWords.append(word)
+        check.append(words[i])
+        prev = words[i]
 
     return [0, 0]
