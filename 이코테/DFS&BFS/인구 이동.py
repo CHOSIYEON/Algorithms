@@ -1,62 +1,60 @@
-import sys
 from collections import deque
-input = sys.stdin.readline
 
-n, l, r = map(int, input().split())
-data = [list(map(int, input().split())) for _ in range(n)]
-
-dx = [-1, 1, 0, 0]
-dy = [0, 0, -1, 1]
-
-def bfs(x, y, graph, visit):
-    unit = []
-    people = 0
+def process(x, y, index):
+    united = []
+    united.append((x, y))
 
     q = deque()
     q.append((x, y))
-    unit.append((x, y))
-    people += graph[x][y]
-    visit[x][y] = True
+
+    union[x][y] = index
+    summary = graph[x][y]
+    count = 1
 
     while q:
         x, y = q.popleft()
+
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
 
-            if 0 <= nx < n and 0 <= ny < n and visit[nx][ny] != True:
+            if 0 <= nx < n and 0 <= ny < n and union[nx][ny] == -1:
                 if l <= abs(graph[nx][ny] - graph[x][y]) <= r:
                     q.append((nx, ny))
-                    unit.append((nx, ny))
-                    people += graph[nx][ny]
-                    visit[nx][ny] = True
+                    union[nx][ny] = index
+                    summary += graph[nx][ny]
+                    count += 1
+                    united.append((nx, ny))
 
-    newPeople = people // len(unit)
+    for i, j in united:
+        graph[i][j] = summary // count
 
-    for x, y in unit:
-        graph[x][y] = newPeople
+    return count
 
-    if len(unit) >= 2:
-        return True
-    else:
-        return False
 
+n, l, r = map(int, input().split())
+graph = []
+dx = [1, -1, 0, 0]
+dy = [0, 0, -1, 1]
 
 result = 0
 
+for _ in range(n):
+    graph.append(list(map(int, input().split())))
+
 while True:
-    visit = [[False] * n for _ in range(n)]
-    stop = True
+    union = [[-1] * n for _ in range(n)]
+    index = 0
 
     for i in range(n):
         for j in range(n):
-            if not visit[i][j]:
-                if bfs(i, j, data, visit):
-                    stop = False
+            if union[i][j] == -1:
+                process(i, j, index)
+                index += 1
 
-    if stop:
+    if index == n * n:
         break
-    else:
-        result += 1
+
+    result += 1
 
 print(result)
