@@ -1,15 +1,12 @@
 n, k = map(int, input().split())
-ans = 0
+answer = 0
 
-while True:
-    target = n // k * k
-    ans += (n-target)
-    n = target
+while n != 1:
+    if n % k == 0:
+        n //= k
+        answer += 1
+    else:
+        n -= 1
+        answer += 1
 
-    if n < k:
-        break
-    ans += 1
-    n //= k
-
-ans += (n-1)
-print(ans)
+print(answer)

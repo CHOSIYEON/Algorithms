@@ -1,11 +1,10 @@
-arr = list(map(int, input()))
-ans = arr[0]
+s = list(map(int, input().rstrip()))
+answer = s[0]
 
-for i in range(1, len(arr)):
-    num = arr[i]
-    if arr[i] <= 1 or ans <= 1:
-        ans += num
+for i in range(1, len(s)):
+    if answer == 0 or answer == 1 or s[i] == 0 or s[i] == 1:
+        answer += s[i]
     else:
-        ans *= num
+        answer *= s[i]
 
-print(ans)
+print(answer)

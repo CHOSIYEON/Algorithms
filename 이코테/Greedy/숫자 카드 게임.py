@@ -1,8 +1,8 @@
 n, m = map(int, input().split())
-min_value = []
+answer = 0
 
-for i in range(n):
-    tmp = list(map(int, input().split()))
-    min_value.append(min(tmp))
+for _ in range(n):
+    cards = list(map(int, input().split()))
+    answer = max(answer, min(cards))
 
-print(max(min_value))
+print(answer)
