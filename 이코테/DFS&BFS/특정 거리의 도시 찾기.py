@@ -1,71 +1,38 @@
-from collections import deque
 import sys
+import heapq
+input = sys.stdin.readline
 
-def bfs(start):
-    queue = deque()
-    queue.append(start)
+def dijkstra(start):
+    q = []
+    heapq.heappush(q, (0, start))
+    distance[start] = 0
 
-    while queue:
-        node = queue.popleft()
+    while q:
+        dist, now = heapq.heappop(q)
 
-        for i in graph[node]:
-            if distance[i] == -1:
-                distance[i] = distance[node] + 1
-                queue.append(i)
+        if distance[now] < dist:
+            continue
+
+        for i in cities[now]:
+            cost = dist + i[1]
+
+            if cost < distance[i[0]]:
+                distance[i[0]] = cost
+                heapq.heappush(q, (cost, i[0]))
 
 n, m, k, x = map(int, input().split())
-graph = [[] for _ in range(n+1)]
-distance = [-1] * (n+1)
-distance[x] = 0
+cities = [[] for _ in range(n+1)]
+distance = [1e9] * (n+1)
 
-for i in range(m):
-    node1, node2 = map(int, input().split())
-    graph[node1].append(node2)
+for _ in range(m):
+    a, b = map(int, input().split())
+    cities[a].append((b, 1))
 
-bfs(x)
+dijkstra(x)
 count = 0
 
-for idx, dist in enumerate(distance):
-    if dist == k:
-        print(idx)
-        count += 1
-
-if count == 0:
-    print(-1)
-
-###
-
-from collections import deque
-import sys
-
-
-def bfs(start):
-    queue = deque()
-    queue.append(start)
-
-    while queue:
-        node = queue.popleft()
-
-        for i in graph[node]:
-            if distance[i] == -1:
-                distance[i] = distance[node] + 1
-                queue.append(i)
-
-
-n, m, k, x = map(int, input().split())
-graph = [[] for _ in range(n + 1)]
-distance = [-1] * (n + 1)
-distance[x] = 0
-
-for i in range(m):
-    node1, node2 = map(int, input().split())
-    graph[node1].append(node2)
-
-bfs(x)
-count = 0
-
-for idx, dist in enumerate(distance):
-    if dist == k:
+for idx, value in enumerate(distance):
+    if value == k:
         print(idx)
         count += 1
 

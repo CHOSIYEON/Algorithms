@@ -1,60 +1,59 @@
+import sys
+input = sys.stdin.readline
 from collections import deque
 
-def process(x, y, index):
-    united = []
-    united.append((x, y))
+def bfs(x, y, visited):
+    queue = deque()
+    queue.append((x, y))
 
-    q = deque()
-    q.append((x, y))
+    union = [(x, y)]
+    visited[x][y] = True
+    union_summary = people[x][y]
 
-    union[x][y] = index
-    summary = graph[x][y]
-    count = 1
-
-    while q:
-        x, y = q.popleft()
+    while queue:
+        x, y = queue.popleft()
 
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
 
-            if 0 <= nx < n and 0 <= ny < n and union[nx][ny] == -1:
-                if l <= abs(graph[nx][ny] - graph[x][y]) <= r:
-                    q.append((nx, ny))
-                    union[nx][ny] = index
-                    summary += graph[nx][ny]
-                    count += 1
-                    united.append((nx, ny))
+            if 0 <= nx < n and 0 <= ny < n and not visited[nx][ny]:
+                if l <= abs(people[x][y] - people[nx][ny]) <= r:
+                    queue.append((nx, ny))
+                    visited[nx][ny] = True
+                    union.append((nx, ny))
+                    union_summary += people[nx][ny]
 
-    for i, j in united:
-        graph[i][j] = summary // count
+    if len(union) == 1:
+        return False
 
-    return count
+    for x, y in union:
+        people[x][y] = union_summary // len(union)
+
+    return True
+
 
 
 n, l, r = map(int, input().split())
-graph = []
-dx = [1, -1, 0, 0]
+people = [list(map(int, input().split())) for _ in range(n)]
+answer = 0
+
+dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
 
-result = 0
-
-for _ in range(n):
-    graph.append(list(map(int, input().split())))
-
 while True:
-    union = [[-1] * n for _ in range(n)]
-    index = 0
+    visited = [[False] * n for _ in range(n)]
+    stop = True
 
     for i in range(n):
         for j in range(n):
-            if union[i][j] == -1:
-                process(i, j, index)
-                index += 1
+            if not visited[i][j]:
+                if bfs(i, j, visited):
+                    stop = False
 
-    if index == n * n:
+    if stop:
         break
+    else:
+        answer += 1
 
-    result += 1
-
-print(result)
+print(answer)
